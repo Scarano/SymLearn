@@ -4,7 +4,7 @@ Implementation of the higher-order abstraction learning (HAL) model.
 
 There is an informal description of the model at [astoundment.com/HAL.html](http://astoundment.com/HAL.html).
 
-This code probably still won't make much sense until I add more comments. If you're brave, however, start with `src/symlearn/postsearch.clj`. The function `run-hal` is where the top-level iteration happens, and is designed to look as much like pseudo-code as possible.
+This code probably still won't make much sense until I add more comments. If you're brave, however, start with `src/genlearn/postsearch.clj`. The function `run-hal` is where the top-level iteration happens, and is designed to look as much like pseudo-code as possible.
 
 ## Usage
 
