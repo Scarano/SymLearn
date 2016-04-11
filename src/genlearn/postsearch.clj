@@ -823,30 +823,6 @@
                  f-block-dist'))))))
                                 
 
-#_(defn run-hal [config problem]
-   (let [iterations (config :hal.iterations)
-         h-prims (hypothesis-primitives config)
-         f-prims (feature-primitives config)
-         initial-hypotheses (generate-initial-hypotheses config h-prims)
-         initial-gen-state {:h-blocks h-prims
-                            :f-blocks f-prims
-                            :hypotheses initial-hypotheses
-                            :solutions (select-solutions config initial-hypotheses)
-                            :features nil
-                            :selected-features nil
-                            :h-model nil
-                            :feature-scores nil}]
-     (loop [iteration 0
-            gen-state initial-gen-state]
-       (when (< iteration iterations)
-         (as-> gen-state gen-state'
-           (assoc gen-state' :h-blocks
-                  (select-blocks config (:solutions gen-state')))
-           (assoc gen-state' :features
-                  (generate-features config (:f-blocks gen-state')))
-           (assoc gen-state' :selected-features
-                  (select-features config (:features gen-state'))))))))
-
 (defn polynomial-problem-set [N max-order max-coeff seed]
   (let [poly-type (make-type '(:int :int))
         random (java.util.Random. seed)]

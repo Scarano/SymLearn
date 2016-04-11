@@ -21,24 +21,9 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="target/classes">
-		<attributes>
-			<attribute name="optional" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry exported="true" kind="con" path="ccw.LEININGEN_CONTAINER">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="sandbox/target/native/macosx/x86_64"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="classes">
-		<attributes>
-			<attribute name="optional" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/sam/Dropbox/programs/workspace/stanford-classifier-2015-04-20/stanford-classifier-3.5.2.jar" sourcepath="/Users/sam/Dropbox/programs/workspace/stanford-classifier-2015-04-20/stanford-classifier-3.5.2-sources.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/Users/sam/Dropbox/programs/workspace/stanford-classifier-2015-04-20/stanford-classifier-3.5.2-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
