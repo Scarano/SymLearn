@@ -6,7 +6,7 @@ Subprograms are considered to represent concepts; composing subprograms into a m
 
 This code probably still won't make much sense until I a) write up a formal description of the model, and b) add more comments to the code. If you're brave, however, start with [`postsearch.clj`](src/genlearn/postsearch.clj). The function `run-hal` is where the top-level iteration happens, and is designed to look as much like pseudo-code as possible.
 
-The expression language is a typed [combinatory logic](https://en.wikipedia.org/wiki/Combinatory_logic) with the routing combinators introduced by Liang (2010; “Learning Programs: a Hierarchical Bayesian Approach”). So far, my experiments focus on the program domain of integer arithmetic (e.g., sum the primes up to *n*). I take advantage of the fact that large sets of synthetic problems in this domain can be easily created, by generating random type-safe expression trees. Although random programs are boring, the features needed to learn them are interesting.
+The expression language is a typed [combinatory logic](https://en.wikipedia.org/wiki/Combinatory_logic) with the routing combinators introduced by Liang et al. (2010; “Learning Programs: a Hierarchical Bayesian Approach”). So far, my experiments focus on the program domain of integer arithmetic (e.g., sum the primes up to *n*). I take advantage of the fact that large sets of synthetic problems in this domain can be easily created, by generating random type-safe expression trees. Although random programs are boring, the features needed to learn them are interesting.
 
 I'm still tuning parameters and tweaking the model....
 
