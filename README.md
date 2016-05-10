@@ -1,6 +1,6 @@
 # HAL
 
-This is an implementation of a model for program sythesis from input/output examples. It is related to the EC algorithm presented in Dechter et al. (2013; “Boostrap Learning via Modular Concept Discovery”), which learns a prior over programs from a sample of positive instances, but differs in that the distribution over programs is conditioned on features of training examples. This it has in common with Programming-by-Example models such as Menon et al. (2013; “A Machine Learning Framework for Programming by Example”), but it differs from the latter in that the example features are also *learned* programs (not hard-coded).
+This is an implementation of a model for program synthesis from input/output examples. It is related to the EC algorithm presented in Dechter et al. (2013; “Boostrap Learning via Modular Concept Discovery”), which learns a prior over programs from a sample of positive instances, but differs in that the distribution over programs is conditioned on features of training examples. This it has in common with Programming-by-Example models such as Menon et al. (2013; “A Machine Learning Framework for Programming by Example”), but it differs from the latter in that the example features are also *learned* programs (not hard-coded).
 
 Subprograms are considered to represent concepts; composing subprograms into a more complex program defines a more abstract concept. This is important to the modivation of the model, so its working title is Higher-order Abstraction Learning, or **HAL**.
 
