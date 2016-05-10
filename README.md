@@ -23,7 +23,7 @@ lein run -m genlearn.postsearch/-main hal.config
 
 All code copyright © 2016 Samuel Scarano, except for the few small functions in `util.clj` explicitly indicated in comments as having been copied from another source. 
 
-Distributed with NO LICENSE. So far, it's a solo project, and I don't see a need to choose a license yet.
+Distributed with NO LICENSE. So far, it's a solo project, and I don't see a need to choose a license.
 
 That means that although I'm sharing the code publicly, I'm not signing away any use or distribution rights. You may view and fork my code in accordance with the GitHub terms of service. I also have no problem with you cloning and running my code, that's why it's here. In the unlikely case that you want to do anything else with it, please get in touch with me.
 
