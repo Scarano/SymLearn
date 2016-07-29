@@ -173,10 +173,10 @@
 
 (defn make-type-node [state type]
   (let [s-blocks (s-blocks-of-type state type)]
-  (TypeNode. type 
-             (sort-by (comp - se-score) s-blocks)
-             (enumerate-apps state type)
-             (atom (ExprCache. java.lang.Double/MAX_VALUE nil)))))
+    (TypeNode. type
+               (sort-by (comp - se-score) s-blocks)
+               (enumerate-apps state type)
+               (atom (ExprCache. Double/MAX_VALUE nil)))))
 
 (defn type-node-instance [state type]
   (indexed-instance-unsync (:node-index state) type #(make-type-node state type)))
@@ -196,7 +196,7 @@
 ;(declare enumerate-apps')
 ;(defn enumerate-apps [& args] (last (repeatedly 3 #(apply enumerate-apps' args))))
 (defn enumerate-apps [state ^IType type]
-#_  (println (to-string type))
+ #_  (println (to-string type))
   (debug-print enumerate-apps-debug (to-string "> enumerate-apps (" type ")"))
   (let [req-router-type (normalize-vars (function-type (var-type -2)
                                                        (function-type (var-type -1)
@@ -236,9 +236,9 @@
             ; This reduces redundancy among expressions a bit.
             :when (cond
                     (not (re-find #"[SB]" router-str))
-                      (not (identity-type? rhs-type))
+                    (not (identity-type? rhs-type))
                     (not (re-find #"[SC]" router-str))
-                      (not (identity-type? lhs-type))
+                    (not (identity-type? lhs-type))
                     :else
                       true)]
         (do 
@@ -353,9 +353,9 @@
   (let [cache @(:expr-cache type-node)]
     (cond
       (= (:min-score cache) min-score)
-        (:exprs cache)
+      (:exprs cache)
       (< (:min-score cache) min-score)
-        (doall (take-while #(>= (se-score %) min-score) (:exprs cache)))
+      (doall (take-while #(>= (se-score %) min-score) (:exprs cache)))
       :else
         (let [exprs (extract-exprs-to-score' state type-node min-score)]
           (swap! (:expr-cache type-node) 
@@ -552,7 +552,7 @@
                                                       (first (keys feature-groups)))
         #_ (println "  select-features selected-feature-vectors"
                    (count selected-feature-vectors) (first selected-feature-vectors))
-        #_ (println "  select-features feature-matrix" (count feature-matrix) )
+        #_ (println "  select-features feature-matrix" (count feature-matrix))
         observations
           (for [[solution-set feature-vector] (map vector solution-sets feature-matrix)
                 :let [#_ (do (print "  select-features ")
@@ -624,7 +624,7 @@
   Datum
   (asFeatures [this] properties)
   (label [this]
-#_    (println "Warning: BlockDatum being treated as having single label")
+   #_    (println "Warning: BlockDatum being treated as having single label")
     (first labels))
   (labels [this] labels))
 
@@ -633,9 +633,9 @@
                                    (for [f features
                                          :let [values (map #(f %) contexts)]
                                          :when (apply not= values)] ; remove constant features
-                                     [f values]))
+                                     [f values]))]
          ; TODO: Use property-groups to filter out redundant features.
-         ]
+
      (transpose
        (for [group (vals property-groups)
              [f values] group]
@@ -785,40 +785,34 @@
     (loop [iteration                0
            remaining-problem-sets   (rest problem-sets)
            problems                 (first problem-sets)
-           feature-candidates       nil
            features                 nil
            h-blocks                 (map se-expr h-prim-dist)
-           h-model                  nil
-           hypotheses               initial-hypotheses
            solution-sets            (select-solutions config
                                       task-domain problems initial-hypotheses)
            f-block-dist             f-prim-dist]
       (logger iteration problems solution-sets features h-blocks)
       (if (= iteration max-iterations)
         [problems solution-sets]
-        (let [feature-candidates' (generate-feature-candidates config
+        (let [feature-candidates  (generate-feature-candidates config
                                     feature-type f-prim-dist f-block-dist)
               features'           (select-features config
-                                    feature-candidates' h-blocks problems solution-sets)
+                                    feature-candidates h-blocks problems solution-sets)
               h-blocks'           (select-hypothesis-blocks config 
                                     h-prim-dist solution-sets)
               h-model'            (train-hypothesis-model config 
                                     features' problems solution-sets)
-              hypotheses'         (generate-hypotheses config 
-                                    task-type h-prim-dist features' h-model' problems)
               problems'           (first remaining-problem-sets)
-              solution-sets'      (select-solutions config 
+              hypotheses'         (generate-hypotheses config
+                                    task-type h-prim-dist features' h-model' problems')
+              solution-sets'      (select-solutions config
                                     task-domain problems' hypotheses')
               f-block-dist'       (next-feature-block-dist config 
                                     features' f-block-dist)]
           (recur (inc iteration)
                  (rest remaining-problem-sets)
                  problems'
-                 feature-candidates'
                  features'
                  h-blocks'
-                 h-model'
-                 hypotheses'
                  solution-sets'
                  f-block-dist'))))))
                                 
